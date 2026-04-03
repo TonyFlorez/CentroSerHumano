@@ -33,25 +33,25 @@ export default function Home() {
 
   const [index, setIndex] = useState(0);
 
-const next = () => {
-  setIndex((index + 1) % testimonios.length);
-};
+  const next = () => {
+    setIndex((prev) => (prev + 1) % testimonios.length);
+  };
 
-const prev = () => {
-  setIndex((index - 1 + testimonios.length) % testimonios.length);
-};
+  const prev = () => {
+    setIndex((prev) => (prev - 1 + testimonios.length) % testimonios.length);
+  };
 
+  // ❌ ELIMINA ESTO SI NO LO USAS
+  // const [selected, setSelected] = useState(null);
 
-const [selected, setSelected] = useState(null);
+  // Auto cambio (corregido)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % testimonios.length);
+    }, 5000);
 
-// Auto cambio
-useEffect(() => {
-  const interval = setInterval(() => {
-    next();
-  }, 5000);
-
-  return () => clearInterval(interval);
-}, [index]);
+    return () => clearInterval(interval);
+  }, []);
 
 
   return (
