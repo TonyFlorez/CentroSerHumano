@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./assets/logo.png";
+import video from "./assets/0403.mp4";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import whatsappIcon from "./assets/whatsapp.png";
@@ -119,10 +120,10 @@ export default function Home() {
       Centro de Psicología SER Humano
     </h1>
     <div className="hidden md:flex gap-6">
-      <a href="/" className="hover:text-green-600">Inicio</a>
-      <a href="#" className="hover:text-green-600">Servicios</a>
-      <a href="#" className="hover:text-green-600">Equipo</a>
-      <a href="#" className="hover:text-green-600">Contacto</a>
+      <a href="#inicio" className="hover:text-green-600">Inicio</a>
+      <a href="#servicios" className="hover:text-green-600">Servicios</a>
+      <a href="#equipo" className="hover:text-green-600">Equipo</a>
+      {/*<a href="#contacto" className="hover:text-green-600">Contacto</a>*/}
     </div>
     <button className="bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700">
       Agendar
@@ -222,13 +223,15 @@ export default function Home() {
       
 <section className="py-24 px-6 bg-[#F5F1EB] text-center">
 
-  <motion.img
-    src={logo}
-    alt="Logo SER Humano"
+  <motion.video
+    src={video} // o una URL si está online
+    autoPlay
+    muted
+    playsInline
     initial={{ scale: 0.6, opacity: 0 }}
     whileInView={{ scale: 1.05, opacity: 1 }}
     transition={{ duration: 1.2 }}
-    className="mx-auto w-[80%] md:w-[850px] mb-12 drop-shadow-2xl"
+    className="mx-auto w-[80%] md:w-[850px] mb-12 drop-shadow-2xl rounded-2xl object-cover"
   />
 
   <motion.div
