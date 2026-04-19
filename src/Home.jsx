@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./assets/logo.png";
 import video from "./assets/0403.mp4";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -15,25 +14,88 @@ import inst8 from "./assets/inst8.png";
 import crecimiento from "./assets/crecimiento.png";
 import aprendizaje from "./assets/aprendizaje.png";
 import entorno from "./assets/entorno.png";
+import PlanesSection from "./planes.jsx";
+import BenefitsSection from "./BenefitsSection";
+import yogainfantil from "./assets/yogainfantil.png";
+import test1 from "./assets/test1.png";
+import videobanner from "./assets/Videobanner1.mp4";
+
+
+
+
+
+
+
+
 
 const testimonios = [
   {
-    texto: "Gracias a este centro logré superar una etapa difícil de mi vida.",
-    nombre: "María López",
+    nombre: "María Gómez",
+    texto: "Mi hijo ha mejorado muchísimo su forma de expresar emociones.",
+    imagen: test1
   },
   {
-    texto: "El acompañamiento fue increíble, muy profesionales.",
-    nombre: "Carlos Ramírez",
+    nombre: "Carlos Ruiz",
+    texto: "Un espacio muy profesional y humano.",
+    imagen: "https://randomuser.me/api/portraits/men/32.jpg"
   },
   {
-    texto: "Me sentí escuchado y comprendido desde la primera sesión.",
-    nombre: "Laura Gómez",
+    nombre: "Laura Pérez",
+    texto: "Recomiendo totalmente el acompañamiento psicológico.",
+    imagen: "https://randomuser.me/api/portraits/women/68.jpg"
+  }
+];
+
+const textosHero = [
+  {
+    titulo: (
+      <>
+        Donde el silencio <br />
+        comienza a <br />
+        <span className="text-[#A3B18A] italic">sanar</span>
+      </>
+    ),
+    descripcion:
+      "Has cargado mucho en silencio… Este es el espacio donde puedes soltar, entenderte y reconstruirte."
   },
+  {
+    titulo: (
+      <>
+        No tienes que poder <br />
+        con todo <br />
+        <span className="text-[#A3B18A] italic">siempre</span>
+      </>
+    ),
+    descripcion:
+      "Aquí puedes bajar la carga, sentirte acompañado y darte el permiso de ser humano."
+  },
+  {
+    titulo: (
+      <>
+        Tu mente también <br />
+        necesita <br />
+        <span className="text-[#A3B18A] italic">un refugio</span>
+      </>
+    ),
+    descripcion:
+      "Un espacio seguro en Medellín donde puedes hablar, liberar y empezar a sanar."
+  }
 ];
 
 
 
 export default function Home() {
+
+const [indexHero, setIndexHero] = useState(0);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setIndexHero((prev) => (prev + 1) % textosHero.length);
+  }, 10000); // 10 segundos
+
+  return () => clearInterval(interval);
+}, []);
+
 
   const [index, setIndex] = useState(0);
 
@@ -64,20 +126,30 @@ export default function Home() {
 
     <div className="font-sans text-gray-800 bg-[#F5F1EB]">
       {/* HERO */}
-       {/* HERO */}
-<section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    {/* HERO */}
+<section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
 
   {/* FONDO */}
   <div className="absolute inset-0 z-0">
 
-    <img 
-      src="https://images.unsplash.com/photo-1506126613408-eca07ce68773"
-      alt="Consultorio psicológico"
-      className="w-full h-full object-cover brightness-95 opacity-40"
-    />
+    {/* VIDEO */}
+    <video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  className="w-full h-full object-cover scale-105"
+>
+  <source src={videobanner} type="video/mp4" />
+</video>
+
+    {/* OVERLAY OSCURO */}
+    <div className="absolute inset-0 bg-black/40"></div>
 
     {/* DEGRADADO */}
-    <div className="absolute inset-0 bg-gradient-to-r from-[#F5F1EB] via-[#F5F1EB]/80 to-transparent"></div>
+    <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+
   </div>
 
   {/* CONTENIDO */}
@@ -85,28 +157,45 @@ export default function Home() {
 
     <div className="max-w-2xl">
 
-      <h1 className="text-5xl md:text-7xl leading-[1.1] mb-6 tracking-tight font-bold text-gray-800">
-        Tu bienestar <br />
-        <span className="text-[#A3B18A] italic">emocional</span> <br />
-        comienza hoy
-      </h1>
+      {/* TEXTOS DINÁMICOS */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={indexHero}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -40 }}
+          transition={{ duration: 1.2 }}
+        >
+          <h1 className="text-5xl md:text-7xl leading-[1.1] mb-6 tracking-tight font-bold text-white">
+            {textosHero[indexHero].titulo}
+          </h1>
 
-      <p className="text-gray-600 text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
-        Conoce la nueva forma de tomar psicoterapia... Un refugio diseñado para tu mente, cuerpo y espíritu en el corazón de Medellín.
-      </p>
+          <p className="text-gray-200 text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
+            {textosHero[indexHero].descripcion}
+          </p>
+        </motion.div>
+      </AnimatePresence>
 
       {/* BOTONES */}
       <div className="flex flex-wrap gap-4">
 
         {/* PRINCIPAL */}
-        <button className="bg-[#A3B18A] hover:bg-[#8F9F78] text-white px-8 py-4 rounded-xl font-medium transition shadow-lg">
-          Agendar Cita
-        </button>
+        <a
+          href="https://wa.link/impucj"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-[#A3B18A] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:bg-[#8F9E76] transition flex items-center gap-2"
+        >
+          Agendar Cita →
+        </a>
 
         {/* SECUNDARIO */}
-        <button className="border border-[#A3B18A] text-[#A3B18A] px-8 py-4 rounded-xl font-medium hover:bg-[#A3B18A] hover:text-white transition">
-          Servicios
-        </button>
+        <a
+          href="#servicios"
+          className="border border-white/60 text-white px-6 py-3 rounded-xl font-medium hover:bg-white hover:text-gray-800 transition"
+        >
+          Ver servicios
+        </a>
 
       </div>
 
@@ -122,19 +211,27 @@ export default function Home() {
     <div className="hidden md:flex gap-6">
       <a href="#inicio" className="hover:text-green-600">Inicio</a>
       <a href="#servicios" className="hover:text-green-600">Servicios</a>
-      <a href="#equipo" className="hover:text-green-600">Equipo</a>
+      <a href="#equipo" className="hover:text-green-600">Trabaja con nosotros</a>
       {/*<a href="#contacto" className="hover:text-green-600">Contacto</a>*/}
     </div>
-    <button className="bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700">
-      Agendar
-    </button>
+    
+  <a
+  href="https://wa.link/tv6qhj"
+  target="_blank" // abre en nueva pestaña
+  rel="noopener noreferrer" // seguridad
+>
+  <button className="bg-white text-[#A3B18A] px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition shadow-md">
+    Habla con nuestro equipo
+  </button>
+</a>
+
   </div>
 </nav>
 
       
 <>
   {/* SERVICIOS */}
-  <section className="py-20 px-6">
+  <section id="servicios" className="py-20 px-6">
     <div className="max-w-6xl mx-auto">
 
       {/* TÍTULO */}
@@ -265,7 +362,7 @@ export default function Home() {
 
 
 
-{/* PSICOTERAPIA INFANTIL - BENTO GRID */}
+{/* PSICOTERAPIA INFANTIL - BENTO GRID MEJORADO */}
 <section className="py-24 bg-[#F5F1EB]">
   <div className="max-w-7xl mx-auto px-6">
 
@@ -279,21 +376,23 @@ export default function Home() {
       <div
         onClick={() => setSelected({
           title: "Psicoterapia Infantil",
-          description: "Espacios terapéuticos diseñados para que los niños puedan expresar sus emociones a través del juego, el diálogo y técnicas especializadas que favorecen su desarrollo emocional y social."
+          description: "Espacios terapéuticos diseñados para que los niños puedan expresar sus emociones a través del juego y el acompañamiento profesional."
         })}
-        className="cursor-pointer md:col-span-2 md:row-span-2 bg-white rounded-2xl p-10 flex flex-col justify-end relative overflow-hidden group shadow hover:scale-[1.02] transition"
+        className="relative cursor-pointer md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden group shadow"
       >
-        <img 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAltCMyopk-C53QSDeGRDTrY0k7ej-HPuIgMQCsKOLyluTx_Zxp7H9pGv_rLFN04c9gYQLvkrsg5dDuCdbNll93wOc96MB5Nl1CBiZPaI2Rcq_utBf0ZR79251dStxdf2PclsiyCKBxVu_SirPfzyeb5d93vKEcW_iyxD2eNyqpLLzgkA4euBvwIwivwPpHSXT0Jljdx8mvqY2E2j3rVjTIMjzqSponD4VYxjvzCTSMYKM2myrHf_0dfiLk_jY1qOR2Hq1J8ttSoMQ"
-          alt="Psicoterapia infantil"
-          className="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:scale-105 transition duration-700"
+        <img
+          src="https://images.unsplash.com/photo-1516627145497-ae6968895b74"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
         />
 
-        <div className="relative z-10">
-          <div className="text-4xl text-[#A3B18A] mb-6">🧸</div>
-          <h4 className="text-3xl font-bold mb-4">Psicoterapia Infantil</h4>
-          <p className="text-gray-600 max-w-sm">
-            Espacios de juego y diálogo adaptados para el desarrollo emocional.
+        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition"></div>
+
+        <div className="relative z-10 p-10 flex flex-col justify-end h-full text-white">
+          <div className="text-4xl mb-4">🧸</div>
+          <h4 className="text-3xl font-bold mb-2">Psicoterapia Infantil</h4>
+          <p className="text-sm opacity-90 max-w-sm">
+            Espacios de juego y expresión emocional.
           </p>
         </div>
       </div>
@@ -302,57 +401,84 @@ export default function Home() {
       <div
         onClick={() => setSelected({
           title: "Yoga Infantil",
-          description: "El yoga infantil mejora la flexibilidad, coordinación y concentración, además de fomentar la calma, la autoestima y la gestión emocional mediante actividades lúdicas."
+          description: "Movimiento consciente que ayuda a regular emociones y mejorar la concentración."
         })}
-        className="cursor-pointer bg-white rounded-2xl p-8 flex flex-col items-center text-center justify-center border border-[#A3B18A]/10 shadow hover:scale-105 transition"
+        className="relative cursor-pointer rounded-2xl overflow-hidden group shadow"
       >
-        <div className="text-3xl text-[#A3B18A] mb-4">🧘</div>
-        <h5 className="font-bold mb-2">Yoga Infantil</h5>
-        <p className="text-sm text-gray-600">
-          Movimiento consciente para niños.
-        </p>
+        <img
+          src={yogainfantil}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
+        />
+
+        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition"></div>
+
+        <div className="relative z-10 p-6 h-full flex flex-col justify-end text-white text-center">
+          <div className="text-3xl mb-2">🧘</div>
+          <h5 className="font-bold">Yoga Infantil</h5>
+        </div>
       </div>
 
       {/* CUENTO */}
       <div
         onClick={() => setSelected({
           title: "Cuento Terapia",
-          description: "La cuento terapia permite a los niños expresar emociones, resolver conflictos y desarrollar su inteligencia emocional a través de historias que reflejan sus vivencias."
+          description: "Historias que ayudan a los niños a comprender y expresar sus emociones."
         })}
-        className="cursor-pointer bg-white rounded-2xl p-8 flex flex-col items-center text-center justify-center border border-[#A3B18A]/10 shadow hover:scale-105 transition"
+        className="relative cursor-pointer rounded-2xl overflow-hidden group shadow"
       >
-        <div className="text-3xl text-[#A3B18A] mb-4">📖</div>
-        <h5 className="font-bold mb-2">Cuento Terapia</h5>
-        <p className="text-sm text-gray-600">
-          Narrativas que sanan el alma.
-        </p>
+        <img
+          src="https://images.unsplash.com/photo-1519681393784-d120267933ba"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
+        />
+
+        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition"></div>
+
+        <div className="relative z-10 p-6 h-full flex flex-col justify-end text-white text-center">
+          <div className="text-3xl mb-2">📖</div>
+          <h5 className="font-bold">Cuento Terapia</h5>
+        </div>
       </div>
 
       {/* ESTIMULACIÓN */}
       <div
         onClick={() => setSelected({
           title: "Estimulación Temprana",
-          description: "Programa dirigido a niños de 0 a 6 años que fortalece el desarrollo cognitivo, motor, emocional y social, potenciando sus habilidades desde una etapa temprana."
+          description: "Desarrollo integral desde los primeros años de vida."
         })}
-        className="cursor-pointer md:col-span-2 bg-[#EFE8E0] rounded-2xl p-10 flex items-center gap-8 border border-[#A3B18A]/10 shadow hover:scale-[1.02] transition"
+        className="relative cursor-pointer md:col-span-2 rounded-2xl overflow-hidden group shadow"
       >
-        <div className="flex-1">
-          <h5 className="text-2xl font-bold mb-2">Estimulación Temprana</h5>
-          <p className="text-gray-600">
-            Bases sólidas para un crecimiento saludable.
+        <img
+          src="https://images.unsplash.com/photo-1588072432836-e10032774350"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+        <div className="relative z-10 p-10 flex flex-col justify-end h-full text-white">
+          <div className="text-4xl mb-4">🧩</div>
+          <h5 className="text-2xl font-bold">Estimulación Temprana</h5>
+          <p className="text-sm opacity-90">
+            Bases sólidas para el desarrollo infantil.
           </p>
         </div>
-
-        <div className="text-5xl text-[#A3B18A]/60">🧩</div>
       </div>
 
     </div>
   </div>
 </section>
+
+
+<BenefitsSection />
+
+<PlanesSection />
+
  
 
         {/* EQUIPO */}
-<section className="py-32 bg-[#F5F1EB]" id="team">
+<section className="py-32 bg-[#F5F1EB]" id="equipo">
   <div className="max-w-7xl mx-auto px-6">
 
     {/* HEADER */}
@@ -492,52 +618,87 @@ export default function Home() {
 
 
 
-     {/* TESTIMONIOS */}
-<section className="py-20 px-6 bg-[#F5F1EB] text-center">
-  <h2 className="text-3xl font-bold mb-10">
+   {/* TESTIMONIOS */}
+<section className="py-24 px-6 bg-[#F5F1EB] text-center relative overflow-hidden">
+
+  {/* DECORACIÓN DE FONDO */}
+  <div className="absolute inset-0 opacity-10 pointer-events-none">
+    <div className="absolute top-10 left-10 text-6xl">💬</div>
+    <div className="absolute bottom-10 right-10 text-6xl">✨</div>
+  </div>
+
+  <h2 className="text-4xl font-bold mb-4">
     Testimonios
   </h2>
+
+  <p className="text-gray-600 mb-12">
+    Experiencias reales que reflejan nuestro compromiso
+  </p>
 
   <div className="relative max-w-2xl mx-auto">
 
     <AnimatePresence mode="wait">
       <motion.div
         key={index}
-        initial={{ opacity: 0, x: 100 }}
+        initial={{ opacity: 0, x: 80 }}
         animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -100 }}
+        exit={{ opacity: 0, x: -80 }}
         transition={{ duration: 0.5 }}
-        className="bg-white p-8 rounded-2xl shadow-lg"
+        className="bg-white p-10 rounded-2xl shadow-xl relative"
       >
-        <p className="italic text-lg mb-4">
+
+        {/* ICONO COMILLAS */}
+        <div className="absolute -top-6 left-6 text-5xl text-[#A3B18A] opacity-30">
+          ❝
+        </div>
+
+        {/* AVATAR */}
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src={testimonios[index].imagen}
+            alt={testimonios[index].nombre}
+            className="w-16 h-16 rounded-full object-cover mb-3 border-4 border-[#A3B18A]/30"
+          />
+
+          <h4 className="font-semibold text-lg">
+            {testimonios[index].nombre}
+          </h4>
+
+          {/* ESTRELLAS */}
+          <div className="flex gap-1 text-yellow-400 mt-2">
+            {"★★★★★".split("").map((_, i) => (
+              <span key={i}>★</span>
+            ))}
+          </div>
+        </div>
+
+        {/* TEXTO */}
+        <p className="italic text-gray-600 leading-relaxed max-w-md mx-auto">
           "{testimonios[index].texto}"
         </p>
 
-        <h4 className="font-semibold text-green-600">
-          {testimonios[index].nombre}
-        </h4>
       </motion.div>
     </AnimatePresence>
 
     {/* BOTONES */}
-    <div className="flex justify-center gap-4 mt-6">
+    <div className="flex justify-center gap-4 mt-8">
       <button
         onClick={prev}
-        className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+        className="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 transition"
       >
         ←
       </button>
 
       <button
         onClick={next}
-        className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+        className="w-10 h-10 flex items-center justify-center bg-[#A3B18A] text-white rounded-full hover:scale-110 transition"
       >
         →
       </button>
     </div>
+
   </div>
 </section>
-      
 
 {/* INSTAGRAM / GALERÍA */}
 <section className="py-20 px-6">
@@ -676,9 +837,15 @@ export default function Home() {
     por profesionales comprometidos con tu crecimiento emocional.
   </p>
 
+  <a
+  href="https://wa.link/impucj"
+  target="_blank" // abre en nueva pestaña
+  rel="noopener noreferrer" // seguridad
+>
   <button className="bg-white text-[#A3B18A] px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition shadow-md">
-    Agendar cita
+    Agendar citas
   </button>
+</a>
 
 </section>
 
@@ -718,15 +885,17 @@ export default function Home() {
       {/* WHATSAPP */}
       {/* WHATSAPP */}
 <a 
-  href="https://wa.me/573001234567" 
+  href="https://wa.link/lr3s1x" 
   target="_blank"
   rel="noopener noreferrer"
   className="fixed bottom-6 right-6 bg-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 flex items-center justify-center transition transform hover:scale-110"
+  
 >
   <img 
     src={whatsappIcon} 
     alt="WhatsApp"
     className="w-6 h-6"
+    
   />
 </a>
     </div>
