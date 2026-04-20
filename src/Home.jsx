@@ -125,8 +125,12 @@ useEffect(() => {
       
 
     <div className="font-sans text-gray-800 bg-[#F5F1EB]">
-      {/* HERO */}
+      
     {/* HERO */}
+
+    <h1 className="sr-only">
+  Psicólogos en Medellín | Centro de Psicología Ser Humano MED
+</h1>
 <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
 
   {/* FONDO */}
@@ -166,9 +170,9 @@ useEffect(() => {
           exit={{ opacity: 0, y: -40 }}
           transition={{ duration: 1.2 }}
         >
-          <h1 className="text-5xl md:text-7xl leading-[1.1] mb-6 tracking-tight font-bold text-white">
-            {textosHero[indexHero].titulo}
-          </h1>
+          <h2 className="text-5xl md:text-7xl leading-[1.1] mb-6 tracking-tight font-bold text-white">
+               {textosHero[indexHero].titulo}
+          </h2>
 
           <p className="text-gray-200 text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
             {textosHero[indexHero].descripcion}
@@ -181,7 +185,7 @@ useEffect(() => {
 
         {/* PRINCIPAL */}
         <a
-          href="https://wa.link/impucj"
+          href="https://wa.me/573235412541?text=Hola%20quiero%20agendar%20una%20cita"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#A3B18A] text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:bg-[#8F9E76] transition flex items-center gap-2"
@@ -216,7 +220,7 @@ useEffect(() => {
     </div>
     
   <a
-  href="https://wa.link/tv6qhj"
+  href="https://wa.me/573235412541?text=Hola%20quiero%20agendar%20una%20cita"
   target="_blank" // abre en nueva pestaña
   rel="noopener noreferrer" // seguridad
 >
@@ -237,12 +241,19 @@ useEffect(() => {
       {/* TÍTULO */}
       <div className="text-center mb-14">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Innovación que impulsa la mejora del SER
+          Servicios de Psicología en Medellín
         </h2>
 
         <p className="text-gray-600 max-w-3xl mx-auto">
-          Buscamos crear una experiencia única que permita cumplir los objetivos terapéuticos,
+          Ofrecemos terapia psicológica en Medellín enfocada en ansiedad, depresión, bienestar emocional y desarrollo personal. Descubre nuestros servicios diseñados para tu crecimiento integral.
+        </p>
+
+        {/* REFUERZO LOCAL SEO */}
+        <p className="text-sm text-gray-500 mt-2">
+          Buscamos crear una experiencia única que permita cumplir los objetivos terapéuticos, 
           ofreciendo acompañamiento integral dentro y fuera del consultorio.
+          
+          
         </p>
       </div>
 
@@ -251,28 +262,28 @@ useEffect(() => {
 
         {[
           {
-            title: "Yoga",
+            title: "Yoga terapéutico",
             img: "https://images.unsplash.com/photo-1545205597-3d9d02c29597",
-            short: "Beneficios del yoga y la meditación.",
-            description: "Descubre los beneficios de la práctica de yoga y la meditación como complemento a tu proceso psicoterapéutico, mejorando tu equilibrio emocional, concentración y bienestar integral."
+            short: "Yoga para el bienestar emocional.",
+            description: "El yoga terapéutico ayuda a reducir la ansiedad, mejorar la concentración y fortalecer el bienestar emocional como complemento a la terapia psicológica."
           },
           {
-            title: "Arte Terapia",
+            title: "Arte terapia",
             img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f",
-            short: "Expresión emocional a través del arte.",
-            description: "Encuentra en el arte una forma de expresar emociones reprimidas, desarrollar tu creatividad y transformar tu vida en una obra consciente dirigida por ti."
+            short: "Expresión emocional guiada.",
+            description: "La arte terapia permite expresar emociones, trabajar bloqueos internos y mejorar la salud mental a través de procesos creativos guiados."
           },
           {
-            title: "Grupos de Apoyo",
+            title: "Grupos de apoyo emocional",
             img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac",
-            short: "Comunidad y apoyo emocional.",
-            description: "Creemos en el poder del ser social, por eso generamos espacios de conexión donde las personas encuentran apoyo, comprensión y crecimiento en comunidad."
+            short: "Apoyo psicológico en comunidad.",
+            description: "Espacios grupales donde puedes compartir experiencias, recibir apoyo emocional y fortalecer tu proceso terapéutico con acompañamiento profesional."
           },
           {
-            title: "Talleres y Charlas",
+            title: "Talleres de desarrollo personal",
             img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
-            short: "Aprendizaje y desarrollo personal.",
-            description: "Apostamos por la psicoeducación, programación neurolingüística y el autodesarrollo, brindando herramientas prácticas con profesionales altamente capacitados."
+            short: "Herramientas para tu crecimiento.",
+            description: "Talleres enfocados en inteligencia emocional, manejo del estrés y crecimiento personal con profesionales en psicología."
           }
         ].map((item, i) => (
 
@@ -288,7 +299,7 @@ useEffect(() => {
             {/* IMAGEN */}
             <img 
               src={item.img}
-              alt={item.title}
+              alt={`${item.title} en Medellín - Centro de Psicología`}
               className="w-full h-80 object-cover group-hover:scale-110 transition duration-500"
             />
 
@@ -309,8 +320,6 @@ useEffect(() => {
 
     </div>
   </section>
-
-  
 </>
 
 
@@ -321,7 +330,7 @@ useEffect(() => {
 <section className="py-24 px-6 bg-[#F5F1EB] text-center">
 
   <motion.video
-    src={video} // o una URL si está online
+    src={video}
     autoPlay
     muted
     playsInline
@@ -338,23 +347,25 @@ useEffect(() => {
     className="max-w-3xl mx-auto"
   >
 
-    {/* TÍTULO */}
+    {/* TÍTULO SEO */}
     <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-      Un enfoque terapéutico diseñado para <br />
+      Terapia psicológica en Medellín para <br />
       <span className="text-[#A3B18A] italic">
-        transformar tu bienestar
+        transformar tu bienestar emocional
       </span>
     </h2>
 
-    {/* TEXTO */}
+    {/* TEXTO SEO */}
     <p className="text-lg text-gray-600 leading-relaxed">
-      En <strong>SER Humano</strong> trabajamos con metodologías basadas en evidencia científica,
-      integrando herramientas innovadoras y personalizadas para cada proceso terapéutico.
+      En <strong>Centro Ser Humano MED</strong> ofrecemos atención psicológica profesional en Medellín,
+      con enfoques basados en evidencia científica para el tratamiento de ansiedad, depresión y procesos de crecimiento personal.
       <br /><br />
-      Nuestro equipo de profesionales acompaña cada historia de forma cercana,
-      ética y comprometida, creando espacios donde el cambio no solo es posible,
-      sino sostenible en el tiempo.
+      Nuestro equipo de psicólogos en Medellín acompaña cada proceso de manera cercana,
+      ética y personalizada, brindando herramientas efectivas para mejorar tu bienestar emocional
+      y calidad de vida.
     </p>
+
+   
 
   </motion.div>
 
@@ -600,7 +611,7 @@ useEffect(() => {
 
       {/* IMAGEN */}
       <div className="hidden md:flex justify-end items-center">
-        <div className="w-80 h-80 bg-[#F5F1EB] rounded-full relative">
+        <div className="w-80 h-80 bg-[#A3B18A] rounded-full relative">
 
           <img 
             src="https://images.unsplash.com/photo-1506126613408-eca07ce68773"
@@ -715,19 +726,19 @@ useEffect(() => {
       },
       {
         img: inst2,
-        link: "https://www.instagram.com/p/POST2"
+        link: "https://www.instagram.com/reel/DWceNcxjmWE/"
       },
       {
         img: inst3,
-        link: "https://www.instagram.com/p/POST3"
+        link: "https://www.instagram.com/reel/DWP8jLtjj8L/"
       },
       {
         img: inst4,
-        link: "https://www.instagram.com/p/POST4"
+        link: "https://www.instagram.com/reel/DWZang4DloO/"
       },
       {
         img: inst5,
-        link: "https://www.instagram.com/p/POST5"
+        link: "https://www.instagram.com/reel/DWP8jLtjj8L/"
       },
       {
         img: inst6,
@@ -825,27 +836,28 @@ useEffect(() => {
 </section>
 
 
-     {/* CTA */}
+    {/* CTA */}
 <section className="py-20 bg-[#A3B18A] text-white text-center">
 
   <h2 className="text-3xl md:text-4xl font-bold mb-6">
-    Da el primer paso hacia tu bienestar
+    Agenda tu cita con un psicólogo en Medellín
   </h2>
 
   <p className="max-w-xl mx-auto mb-8 text-white/90">
-    Agenda tu sesión y comienza un proceso de transformación personal acompañado
-    por profesionales comprometidos con tu crecimiento emocional.
+    Da el primer paso hacia tu bienestar emocional. Recibe atención psicológica profesional en Medellín para ansiedad, depresión y crecimiento personal. Escríbenos por WhatsApp y agenda tu sesión hoy mismo.
   </p>
 
+ 
+
   <a
-  href="https://wa.link/impucj"
-  target="_blank" // abre en nueva pestaña
-  rel="noopener noreferrer" // seguridad
->
-  <button className="bg-white text-[#A3B18A] px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition shadow-md">
-    Agendar citas
-  </button>
-</a>
+    href="https://wa.me/573235412541?text=Hola%20quiero%20agendar%20una%20cita"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <button className="bg-white text-[#A3B18A] px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition shadow-md">
+      Agendar cita por WhatsApp
+    </button>
+  </a>
 
 </section>
 
